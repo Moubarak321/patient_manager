@@ -1,0 +1,70 @@
+/* ===================== 
+    start configuration 
+ ===================== */
+
+ html,
+ body { 
+    height: 100% ;
+    margin: 0;
+    max-width: 100%; 
+    overflow: hidden; 
+} 
+
+ /* ===================== 
+    Navbar 
+ ===================== */
+ #btn-nav {
+    width: 90px;
+    float: right;
+    margin-right: 25px;
+ }
+
+ /* ===================== 
+    footer 
+ ===================== */
+ /* push footer down automatically */
+ .wrapper{
+    min-height: 100%;
+    margin-bottom: -170px;
+} 
+
+#footer, .push{
+    height: 50px;
+    font-size: 13px;
+}                   
+/* end pushing down */
+
+/* ===================== 
+    login 
+ ===================== */
+ #btn-enter{
+   width: 90px;
+ }
+#heart{
+   position: absolute;
+   top: 70%;
+   left: 50%;
+   margin-right: -50%;
+   transform: translate(-50% , -50%);
+   font-size: 22px;
+ }
+
+.icon-width{
+   width:45px ;
+}
+
+ /* ===================== 
+    backend 
+ ===================== */
+.side-label{
+   width: 70px;
+}
+
+#no_data{
+   position: absolute;
+   top:50%;
+   left: 50%;
+   margin-right: -50%;
+   transform: translate(-50% , -50%);
+   font-size: 22px;
+}

@@ -1,0 +1,72 @@
+{% extends 'add.html' %}
+
+<!-- title on browser -->
+{% block title %} Edit Patient {% endblock title %}
+
+
+<!-- navbar-content -->
+{% block navbar-content %}
+<i class="fas fa-user-edit"></i>&nbsp; {{ patient.name }}
+{% endblock navbar-content %}
+
+<!-- card-title in add.html-->
+{% block card-title %} 
+Registered at: <span class="text-dark">{{ patient.created_at | date:'m/d/Y (H:i)' }}</span>
+{% endblock card-title %}
+
+<!-- =========== add.html form action================== -->
+{% block action %} action="/edit_patient/" {% endblock action %}
+
+<!-- =================== All inputs extended  ================ -->
+<!-- Name -->
+{% block Value-name %} value = "{{ patient.name }}" {% endblock Value-name %}
+<!-- phone -->
+{% block Value-phone %} value = "{{ patient.phone }}" {% endblock Value-phone %}
+<!-- eamil -->
+{% block Value-email %} value = "{{ patient.email }}" {% endblock Value-email %}
+<!-- age -->
+{% block Value-age %} value = "{{ patient.age }}" {% endblock Value-age %}
+<!-- gender -->
+{% block option %} 
+<option value="" style="background-color: #d3d3d3; color:#007bff;"> {{ patient.gender }}</option>
+{% endblock option %}
+<!-- note -->
+{% block note %}{{ patient.note }}{% endblock note %}
+                          <!--=== ID Hidden  === -->
+{% block ID-hidden %}      
+<input type="hidden" value="{{ patient.id }}" name = 'id'> 
+{% endblock ID-hidden %}
+
+<!-- ======================= end inputs =================== --> 
+
+
+
+<!-- ============= add.html validation buttons ===================== -->
+{% block btn-add %}
+<i class="fas fa-hdd"></i>&nbsp; Save
+{% endblock btn-add %}
+<!-- ============= add.html validation buttons ===================== -->
+
+
+
+<!-- reset button in edit.html  -->
+{% block btn-reset %}   <button type="reset" class="btn btn-secondary btn-sm"><i class="fas fa-sync-alt"></i>&nbsp; Reset</button>  {% endblock btn-reset %}
+
+
+
+
+
+
+
+
+
+
+{% for message in messages %}
+        {% if message.tags == 'success' %}
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            var m = "{{ message }}" ;
+            swal("Patient updated succesfully !", m, "success")
+        </script>
+        {% endif %}
+{% endfor %}

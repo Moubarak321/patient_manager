@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+<!-- title on browser -->
+{% block title %} Add Patient {% endblock title %}
+
+
+
+<!-- navbar-content -->
+{% block navbar-content %}
+<i class="fas fa-user-plus"></i>&nbsp; Add Patients
+{% endblock navbar-content %}
+
+<!-- time root  -->
+{% block time %} 
+<div class="col-sm">
+    <center>
+        <span id="clock" style="color:#89fff0;"></span>
+    </center>
+</div>
+{% endblock time %}
+
+
+<!-- btn-navbar logout-->
+{% block btn-nav %}
+<a  class="btn btn-outline-danger btn-sm border-light text-light" id="btn-nav" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a>
+{% endblock btn-nav %}
+
+
+
+<!-- page content -->
+{% block content %}
+
+<div class="container mb-10" >
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-body border-dark text-primary mt-5">
+                <span class="text-center">{% block card-title %} FILL OUT THE FORM BELOW {% endblock card-title %}</span>
+            </div>
+            <form {% block action %} action="/add_patient/" {% endblock action %} method="POST" autocomplete="off" enctype="multipart/form-data" class="card p-3 border-dark mt-3">
+                {% csrf_token %}
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text side-label">Name</span>
+                    <input type="text" class="form-control" name="name" placeholder="First and Last name" {% block Value-name %}{% endblock Value-name %}>
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text side-label">Phone</span>
+                    <input type="text" class="form-control" name="phone" placeholder="Patient phone number" {% block Value-phone %}{% endblock Value-phone %}>
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text side-label">Email</span>
+                    <input type="email" class="form-control" name="email" placeholder="Email" {% block Value-email %}{% endblock Value-email %}>
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text side-label">Age</span>
+                    <input type="text" class="form-control" name="age" placeholder="Age" {% block Value-age %}{% endblock Value-age %}>
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <label class="input-group-text side-label">Gender</label >
+                    <select class="form-select" name="gender">
+                        {% block option %}
+                        <option value="" hidden>Select the gender</option>
+                        {% endblock option %}
+                        <option disabled></option>
+                        <option>M</option>
+                        <option>F</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" name="note" id="" cols="30" rows="7" placeholder="Description is optional..." >{% block note %}{% endblock note %}</textarea>
+                </div>
+                <div class="d-grid gap-2 mt-2">
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        {% block btn-add %}
+                        <i class="fas fa-plus"></i>&nbsp; Add
+                        {% endblock btn-add %}
+                    </button>
+
+                    <!-- reset button in edit.html denied here -->
+                    {% block btn-reset %}     {% endblock btn-reset %}
+
+                    <a href="{% url 'backend' %}" class="btn btn-dark btn-sm"> <i class="fas fa-chevron-left"></i>&nbsp;Back</a>
+
+                </div>
+
+                <!--====================== ID Hidden  ====================== -->
+                {% block ID-hidden %}               {% endblock ID-hidden %}
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+
+<!--================= footer color =================-->
+{% block footer %} style="color: #89fff0; text-decoration: none;" {% endblock footer %}

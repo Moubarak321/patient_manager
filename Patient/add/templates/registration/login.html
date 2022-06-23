@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+<!-- title on browser -->
+{% block title %} Login {% endblock title %}
+
+<!-- navbar-content -->
+{% block navbar-content %}
+<i class="fas fa-stethoscope"></i>&nbsp;Login
+{% endblock navbar-content %}
+
+
+<!-- btn-navbar -->
+{% block btn-nav %}
+<a href="{% url 'frontend' %}" class="btn btn-outline-primary btn-sm border-light text-light" id="btn-nav">Go Back</a>
+{% endblock btn-nav %}
+                    
+
+<!--======= page content =======-->
+{% block content %}
+
+    <div class="container mt-4">
+        <div class="card p-3 border-dark">
+            <span class="btn btn-outline-danger border-dark mt-3"> <i class="fas fa-lock"></i>&nbsp; RESTRICTED ACCESS</span>
+            <form  method="POST" autocomplete="off" novalidate>
+                {% csrf_token %}
+                <div class="input-group mb-3 mt-4">
+                    <span class="btn border-secondary bg-light input-group-text icon-width"><i class="fas fa-user-alt"></i> </span>
+                    <input  type="text" class="form-control" name="username" placeholder="Username" >
+                </div>
+                <div class="input-group mb-3">
+                    <span class="btn border-secondary bg-light input-group-text icon-width"><i class="fas fa-lock"></i> </span>
+                    <input  type="password" class="form-control" name="password" placeholder="Password" >
+                </div>
+                <input type="submit" class="btn btn-primary btn-sm mt-3 mb-2" value="Enter" id="btn-enter">
+            </form>
+        </div>
+
+        <!-- Message from backend -->
+        {% if form.errors %}
+
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            swal('Denied !', 'Enter your data correctly', 'error')
+        </script>
+
+        {% endif %}
+
+        <!-- Heart pulse -->
+        <center id="heart">
+            <i class=" text-danger fas fa-heartbeat fa-5x blink_me"></i>
+            <div class="text-danger  blink_me">Somebody help me !!!</div>
+        </center>
+
+    </div> <!--end container-->
+
+{% endblock content %}
+
+<!--================= footer color =================-->
+{% block footer %} style="color: #a9a9a9; text-decoration: none;" {% endblock footer %}

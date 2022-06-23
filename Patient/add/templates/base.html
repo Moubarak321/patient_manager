@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ============== favicon ============== -->
+    <link rel="shortcut icon" href={% static "img/hospital.ico" %}>
+    <!-- ============== logo ============== -->
+    <link rel="shortcut icon" href={% static "img/doctor.ico" %}>
+    <!-- ============== static css ============== -->
+    <link rel="stylesheet" href={% static "css/style.css" %}>
+    <!-- ============== bootstrap.css ============== -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">    
+    <!-- ============== font awesome ============== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>{% block title %} Patient manager {% endblock title %}</title>
+</head>
+<body>
+
+
+    
+    
+    <div class="wrapper">
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="col-sm">
+                    <a class="navbar-brand flex-grow-1" style="text-align: center; color: white; margin-left: 25px;" href="">
+                        {% block navbar-content %}
+                        <i class="fas fa-briefcase-medical"></i>&nbsp;Patient Manager
+                        {% endblock navbar-content %}
+                        
+                    </a>
+                </div>
+
+                <!-- TIME ROOT -->
+                {% block time %} {% endblock time %}
+
+                <div class="col-sm">
+                    {% block btn-nav %}
+                        <a href="{% url 'backend' %}" class="btn btn-outline-info btn-sm border-light" id="btn-nav">Login</a>
+                    {% endblock btn-nav %}
+                    
+                </div>
+            </nav>
+        </header>
+
+
+        <!-- Alert logout confirmation Button trigger modal -->      
+        <!-- Modal -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel"><i class="fas fa-sign-out-alt"></i> Logout</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <span class="text-danger"><i class="fas fa-sign-out-alt fa-3x mt-4"></i></span>
+                    <div class="mt-4 mb-4 text-danger">Are you sure to exit the system ?</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+                    <a href="{% url 'logout' %}" type="button" class="btn btn-outline-danger btn-sm">Logout</a>
+                </div>
+            </div>
+            </div>
+        </div>   <!-- endAlert message Button trigger modal -->
+
+
+
+
+
+    <!-- ============== block content ============== -->
+    {% block content %}{% endblock content  %}
+
+    </div> <!-- END WRAPPER//////-->
+
+
+    <!--========== footer ========== -->
+
+    <br><br><br><br><br>
+
+    <footer class="bg-dark text-center text-lg-start text-light" id="footer">
+
+        <div class="text-center p-3" style="background-color: rgb(0,0,0.2);">
+            Copyright &copy; {% now "Y" %} <span>All right reserved | Made with
+                <i class="fas fa-heartbeat text-danger blink_me" style="font-size:15px ;"></i> by 
+                <a href="" target="_blank" {% block footer %} style="color: #0dcaf0; text-decoration: none;" {% endblock footer %}>Bulldozer</a>
+            </span>
+            <i></i>
+            <a href=""></a>
+        </div>
+
+    </footer>
+
+<!-- ============== bootstrap.js ============== -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>    
+<!-- ============== jquery cdn ============== -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!--============== static js ============== -->
+<script src="{% static "js/script.js" %}"></script>
+
+<script>
+    (function blink(){
+        $('.blink_me').fadeOut(1000).fadeIn(1000, blink);
+    })();
+</script>
+
+</body>
+</html>
